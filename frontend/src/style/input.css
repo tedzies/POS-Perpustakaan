@@ -1,4 +1,4 @@
-div.input {
+.input {
     display: grid;
     grid-template-columns: max-content max-content;
     gap: 10px;
