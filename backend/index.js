@@ -85,7 +85,7 @@ app.post("/anggota/tambah", (req, res) => {
   const no_telp = req.body.no_telp;
 
   db.query(
-    "CALL tambah_anggota (?, ?, ?)",
+    "INSERT INTO anggota(nama, alamat, no_telp) VALUES('?', '?', '?')",
     [nama, alamat, no_telp],
     (err, result) => {
       if (err) {

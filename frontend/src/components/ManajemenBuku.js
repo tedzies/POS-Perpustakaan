@@ -74,14 +74,14 @@ function DaftarBuku() {
                     setPengarangBaru(event.target.value);
                   }}
                 />
-                <button
+                <button className="update"
                   onClick={() => {
                     updBuku(val.id_buku);
                   }}
                 >
                   Ubah
                 </button>
-                <button
+                <button className="delete"
                   onClick={() => {
                     hapusBuku(val.id_buku);
                   }}

@@ -43,7 +43,7 @@ function TambahBuku() {
         }}
       />
 
-      <button onClick={tambah}>Tambah Buku</button>
+      <button className="add" onClick={tambah}>Tambah Buku</button>
     </div>
   );
 }

@@ -27,7 +27,7 @@ function TambahBuku() {
         }}
       />
 
-      <label>Penerbit</label>
+      <label>Alamat</label>
       <input
         type="text"
         onChange={(event) => {
@@ -35,7 +35,7 @@ function TambahBuku() {
         }}
       />
 
-      <label>Pengarang</label>
+      <label>No.</label>
       <input
         type="text"
         onChange={(event) => {
@@ -43,7 +43,7 @@ function TambahBuku() {
         }}
       />
 
-      <button onClick={tambah}>Tambah Anggota</button>
+      <button className="add" onClick={tambah}>Tambah Anggota</button>
     </div>
   );
 }

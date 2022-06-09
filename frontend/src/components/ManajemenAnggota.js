@@ -74,14 +74,14 @@ function DaftarAnggota() {
                     setTelpBaru(event.target.value);
                   }}
                 />
-                <button
+                <button className="update"
                   onClick={() => {
                     updAnggota(val.id_anggota);
                   }}
                 >
                   Ubah
                 </button>
-                <button
+                <button className="delete"
                   onClick={() => {
                     hapusAnggota(val.id_anggota);
                   }}
