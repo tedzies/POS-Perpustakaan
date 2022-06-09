@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import Axios from "axios";
 
 function TambahBuku() {
-  const [judul, setJudul] = useState("");
-  const [penerbit, setPenerbit] = useState("");
-  const [pengarang, setPengarang] = useState("");
+  const [nama, setNama] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [no_telp, setTelp] = useState("");
 
   const tambah = () => {
-    Axios.post("http://localhost:3001/buku/tambah", {
-      judul: judul,
-      penerbit: penerbit,
-      pengarang: pengarang,
+    Axios.post("http://localhost:3001/anggota/tambah", {
+      nama: nama,
+      alamat: alamat,
+      no_telp: no_telp,
     }).then(() => {
       console.log = "Sukses!";
     });
@@ -19,11 +19,11 @@ function TambahBuku() {
 
   return (
     <div className="input">
-      <label>Judul</label>
+      <label>Nama</label>
       <input
         type="text"
         onChange={(event) => {
-          setJudul(event.target.value);
+          setNama(event.target.value);
         }}
       />
 
@@ -31,7 +31,7 @@ function TambahBuku() {
       <input
         type="text"
         onChange={(event) => {
-          setPenerbit(event.target.value);
+          setAlamat(event.target.value);
         }}
       />
 
@@ -39,11 +39,11 @@ function TambahBuku() {
       <input
         type="text"
         onChange={(event) => {
-          setPengarang(event.target.value);
+          setTelp(event.target.value);
         }}
       />
 
-      <button onClick={tambah}>Tambah Buku</button>
+      <button onClick={tambah}>Tambah Anggota</button>
     </div>
   );
 }

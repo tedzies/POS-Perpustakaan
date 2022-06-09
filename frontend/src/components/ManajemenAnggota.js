@@ -16,16 +16,20 @@ function DaftarAnggota() {
   };
 
   const updAnggota = (id) => {
-    Axios.put("http://localhost:3001/anggota/update", {
-      nama: namaBaru,
-      alamat: alamatBaru,
-      no_telp: telpBaru,
-      id_anggota: id,
-    }).then((response) => alert("Update Data?"));
+    if (window.confirm("Apakah anda yakin untuk mengubah data?")) {
+      Axios.put("http://localhost:3001/anggota/update", {
+        nama: namaBaru,
+        alamat: alamatBaru,
+        no_telp: telpBaru,
+        id_anggota: id,
+      }).then((response) => alert("Sukses!"));
+    }
   };
 
   const hapusAnggota = (id) => {
-    Axios.delete(`http://localhost:3001/anggota/delete/${id}`);
+    if (window.confirm("Apakah anda yakin untuk menghapus data?")) {
+      Axios.delete(`http://localhost:3001/anggota/delete/${id}`);
+    }
   };
 
   return (

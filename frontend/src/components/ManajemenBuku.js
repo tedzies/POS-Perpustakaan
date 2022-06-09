@@ -16,16 +16,20 @@ function DaftarBuku() {
   };
 
   const updBuku = (id) => {
-    Axios.put("http://localhost:3001/buku/update", {
-      judul: judulBaru,
-      penerbit: penerbitBaru,
-      pengarang: pengarangBaru,
-      id_buku: id,
-    }).then((response) => alert("Update Data?"));
+    if (window.confirm("Apakah anda yakin untuk mengubah data?")) {
+      Axios.put("http://localhost:3001/buku/update", {
+        judul: judulBaru,
+        penerbit: penerbitBaru,
+        pengarang: pengarangBaru,
+        id_buku: id,
+      }).then((response) => alert("Sukses!"));
+    }
   };
 
   const hapusBuku = (id) => {
-    Axios.delete(`http://localhost:3001/buku/delete/${id}`);
+    if (window.confirm("Apakah anda yakin untuk menghapus data?")) {
+      Axios.delete(`http://localhost:3001/buku/delete/${id}`);
+    }
   };
 
   return (
