@@ -17,7 +17,7 @@ const db = mysql.createConnection({
   database: "perpus",
 });
 
-app.post("/tambah", (req, res) => {
+app.post("/buku/tambah", (req, res) => {
   const judul = req.body.judul;
   const penerbit = req.body.penerbit;
   const pengarang = req.body.pengarang;
@@ -35,17 +35,20 @@ app.post("/tambah", (req, res) => {
   );
 });
 
-app.get("/daftar", (req, res) => {
-  db.query("SELECT * FROM buku", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+app.get("/buku/daftar", (req, res) => {
+  db.query(
+    "SELECT *, DATE_FORMAT(tgl_penambahan,'%Y-%m-%d') AS tanggal FROM buku",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
-app.put("/update", (req, res) => {
+app.put("/buku/update", (req, res) => {
   const id = req.body.id_buku;
   const judul = req.body.judul;
   const penerbit = req.body.penerbit;
@@ -64,10 +67,69 @@ app.put("/update", (req, res) => {
   );
 });
 
-app.delete("/delete/:id_buku", (req, res) => {
+app.delete("/buku/delete/:id_buku", (req, res) => {
   const id = req.params.id_buku;
 
   db.query("DELETE FROM buku WHERE id_buku = ?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/anggota/tambah", (req, res) => {
+  const nama = req.body.nama;
+  const alamat = req.body.alamat;
+  const no_telp = req.body.no_telp;
+
+  db.query(
+    "CALL tambah_anggota (?, ?, ?)",
+    [nama, alamat, no_telp],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(["Sukses! Data Ditambahkan"]);
+      }
+    }
+  );
+});
+
+app.get("/anggota/daftar", (req, res) => {
+  db.query("SELECT * FROM anggota", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.put("/anggota/update", (req, res) => {
+  const id = req.body.id_anggota;
+  const nama = req.body.nama;
+  const alamat = req.body.alamat;
+  const no_telp = req.body.no_telp;
+
+  db.query(
+    "UPDATE anggota SET nama = ?, alamat = ?, no_telp = ? WHERE id_anggota = ?",
+    [nama, alamat, no_telp, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.delete("/anggota/delete/:id_buku", (req, res) => {
+  const id = req.params.id_anggota;
+
+  db.query("DELETE FROM anggota WHERE id_anggota = ?", [id], (err, result) => {
     if (err) {
       console.log(err);
     } else {
